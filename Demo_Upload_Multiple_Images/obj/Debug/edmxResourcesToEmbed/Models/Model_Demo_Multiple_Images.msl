@@ -1,0 +1,24 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="Demo_Multiple_ImagesModelStoreContainer" CdmEntityContainer="Demo_Multiple_ImagesEntities">
+    <EntitySetMapping Name="Products">
+      <EntityTypeMapping TypeName="Demo_Multiple_ImagesModel.Product">
+        <MappingFragment StoreEntitySet="Product">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="name" ColumnName="name" />
+          <ScalarProperty Name="price" ColumnName="price" />
+          <ScalarProperty Name="images" ColumnName="images" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Sub_Images">
+      <EntityTypeMapping TypeName="Demo_Multiple_ImagesModel.Sub_Images">
+        <MappingFragment StoreEntitySet="Sub_Images">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="url_images" ColumnName="url_images" />
+          <ScalarProperty Name="product_id" ColumnName="product_id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>

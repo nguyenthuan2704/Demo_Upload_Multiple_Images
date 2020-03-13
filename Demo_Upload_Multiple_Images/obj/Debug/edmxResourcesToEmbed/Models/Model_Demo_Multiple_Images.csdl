@@ -1,0 +1,42 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="Demo_Multiple_ImagesModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="Product">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="name" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+    <Property Name="price" Type="Decimal" Precision="19" Scale="4" />
+    <Property Name="images" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="Sub_Images" Relationship="Self.FK_Product_Sub_Images" FromRole="Product" ToRole="Sub_Images" />
+  </EntityType>
+  <EntityType Name="Sub_Images">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="url_images" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+    <Property Name="product_id" Type="Int32" />
+    <NavigationProperty Name="Product" Relationship="Self.FK_Product_Sub_Images" FromRole="Sub_Images" ToRole="Product" />
+  </EntityType>
+  <Association Name="FK_Product_Sub_Images">
+    <End Role="Product" Type="Self.Product" Multiplicity="0..1" />
+    <End Role="Sub_Images" Type="Self.Sub_Images" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Product">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="Sub_Images">
+        <PropertyRef Name="product_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="Demo_Multiple_ImagesEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="Products" EntityType="Self.Product" />
+    <EntitySet Name="Sub_Images" EntityType="Self.Sub_Images" />
+    <AssociationSet Name="FK_Product_Sub_Images" Association="Self.FK_Product_Sub_Images">
+      <End Role="Product" EntitySet="Products" />
+      <End Role="Sub_Images" EntitySet="Sub_Images" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

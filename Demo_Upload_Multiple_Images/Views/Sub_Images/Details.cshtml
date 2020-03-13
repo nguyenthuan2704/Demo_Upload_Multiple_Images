@@ -1,0 +1,34 @@
+﻿@model Demo_Upload_Multiple_Images.Models.Sub_Images
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Sub_Images</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.url_images)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.url_images)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Product.name)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Product.name)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.id }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>
